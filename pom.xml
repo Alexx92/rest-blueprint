@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.mytest</groupId>
+  <artifactId>rest-bundle-clean</artifactId>
+  <version>1.0.1</version>
+  
+  <packaging>bundle</packaging>
+  
+  <name>BUNDLE INSTALL F7 clean</name>
+  <description>Camel Content-Based Router Example Rest</description>
+
+  <properties>
+    <camel.version>2.21.0.fuse-710018-rqedhat-00001</camel.version>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <version.maven-bundle-plugin>3.2.0</version.maven-bundle-plugin>
+    <jboss.fuse.bom.version>7.1.0.fuse-710023-redhat-00001</jboss.fuse.bom.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.fuse</groupId>
+        <artifactId>jboss-fuse-parent</artifactId>
+        <version>${jboss.fuse.bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-blueprint</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-blueprint</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>   
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+    <dependency>
+		<groupId>org.apache.camel</groupId>
+		<artifactId>camel-spark-rest</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.camel</groupId>
+		<artifactId>camel-http4</artifactId>
+	</dependency>
+<!-- 	<dependency> -->
+<!-- 		<groupId>org.apache.camel</groupId> -->
+<!-- 		<artifactId>camel-bindy</artifactId> -->
+<!-- 	</dependency> -->
+	<dependency>
+	    <groupId>org.apache.camel</groupId>
+	    <artifactId>camel-swagger-java</artifactId>
+	</dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test-blueprint</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>org.apache.felix.fileinstall</artifactId>
+          <groupId>org.apache.felix</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+	<dependency>
+		<groupId>org.apache.camel</groupId>
+		<artifactId>camel-jackson</artifactId>
+	</dependency>
+  </dependencies>
+  
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>${version.maven-bundle-plugin}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>rest-bundle-clean</Bundle-SymbolicName>
+            <Bundle-Name>Camel Content-Based Router Example Rest [rest-bundle-clean]</Bundle-Name>
+			<Import-Package>*</Import-Package>
+          </instructions>
+         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.0.1</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-maven-plugin</artifactId>
+        <version>${camel.version}</version>
+        <configuration>
+          <useBlueprint>true</useBlueprint>
+          <useCDI>true</useCDI>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
